@@ -13,9 +13,10 @@ int main(int argc, char * argv[]){
 
     pthread_t hilos[nHilos];
 
-    for (int i = 0; i < nHilos; i++){ pthread_create(&hilos[i], NULL, aumentaVariableGlobal, NULL ); }
+    for (int i = 0; i < nHilos; i++){ pthread_create(&hilos[i], NULL, aumentaVariableGlobal, NULL );
+                                      pthread_join(hilos[i], NULL); }
 
-    for (int i = 0; i < nHilos; i++) { pthread_join(hilos[i], NULL); }
+    //for (int i = 0; i < nHilos; i++) {  }
 
     printf("la variable global suma %i \n", variableGlobal);
     
