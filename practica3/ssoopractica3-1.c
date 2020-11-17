@@ -7,9 +7,11 @@ void * suministro();
 
 int camisetas[5] = {1,2,3,4,5};
 
-pthread_mutex_t mutex_acceso;
+pthread_mutex_t mutex_acceso = PTHREAD_MUTEX_INITIALIZER;
 
 int main(int argc, char * argv[]){
+
+    srand(time(NULL)); //se establece el número semilla
 
     int n; //clientes
 
@@ -19,7 +21,7 @@ int main(int argc, char * argv[]){
     pthread_t clientes[n];
 
     int m; //proveedores y modelos de camiseta
-    m = 1;
+    m = 5;
 
     pthread_t proveedores[m];
 
@@ -40,11 +42,7 @@ int main(int argc, char * argv[]){
 
 void * compra(){
 
-    srand(time(0)); //se establece el número semilla
-
     int modelo=(rand()%4)+1; //modelo de camiseta a comprar
-
-    srand(time(0));
 
     int cantidad=(rand()%10)+1; //cantidad de camiseta a comprar
 
@@ -66,11 +64,7 @@ void * compra(){
 
 void * suministro(){
 
-    srand(time(0)); //se establece el número semilla
-
     int modelo=(rand()%4)+1; //modelo de camiseta a comprar
-
-    srand(time(0));
 
     int cantidad=(rand()%10)+1; //cantidad de camiseta a comprar
 
